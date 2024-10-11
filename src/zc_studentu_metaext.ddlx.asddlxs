@@ -1,0 +1,38 @@
+@Metadata.layer: #CUSTOMER
+
+@UI.headerInfo : {
+ typeName: 'Student Detail',
+ typeNamePlural: 'Student Details',
+ title : {type: #STANDARD, label: 'Student Details', value: 'Studentid'}
+}
+annotate entity ZC_STUDENTU with
+{
+
+  @UI.facet: [{ 
+        id: 'flight',
+        purpose: #STANDARD,
+        type: #IDENTIFICATION_REFERENCE,
+        label : 'Flight',
+        position: 10
+     }]
+
+  @EndUserText.label: 'ID'
+  @UI : { selectionField: [{ position: 10 }], lineItem: [{ position: 10 }], identification: [{ position: 10 }]}
+  Studentid;
+  @EndUserText.label: 'Name'
+  @UI : { selectionField: [{ position: 20 }], lineItem: [{ position: 20 }], identification: [{ position: 20 }]}
+  Studentname;
+  @EndUserText.label: 'Class'
+  @UI : { selectionField: [{ position: 30 }], lineItem: [{ position: 30 }], identification: [{ position: 30 }]}
+  Studentclass;
+  @EndUserText.label: 'Age'
+  @UI : { selectionField: [{ position: 40 }], lineItem: [{ position: 40 }], identification: [{ position: 40 }]}
+  Studentage;
+  @EndUserText.label: 'Section'
+  @UI : { selectionField: [{ position: 50 }], lineItem: [{ position: 50 }], identification: [{ position: 50 }]}
+  Studentsection;
+  @EndUserText.label: 'School'
+  @UI : { selectionField: [{ position: 60 }], lineItem: [{ position: 60 }], identification: [{ position: 60 }]}
+  Schoolname;
+
+}
