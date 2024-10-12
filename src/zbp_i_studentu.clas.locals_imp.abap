@@ -16,27 +16,47 @@ CLASS lhc__students IMPLEMENTATION.
   METHOD get_instance_authorizations.
   ENDMETHOD.
 
-  METHOD get_instance_features.
+  METHOD get_instance_features.  "action method for changing the state(enalbe/disable) of action button
+
+    READ ENTITIES OF zi_studentu
+    IN LOCAL MODE
+    ENTITY _students
+    FIELDS ( Status )
+    WITH CORRESPONDING  #( keys )
+    RESULT DATA(tempStudentsData)
+    FAILED failed.
+
+    result =
+    VALUE #(
+      FOR student IN tempstudentsdata
+      LET statusVal = COND #( WHEN student-status = 'Passed'
+                            THEN if_abap_behv=>fc-o-disabled
+                            ELSE if_abap_behv=>fc-o-enabled )
+
+                            IN ( %tky = student-%tky
+                                 %action-setAdmitted = statusval )
+     ).
+
   ENDMETHOD.
 
   METHOD setAdmitted.   "action method
 
-  MODIFY ENTITIES OF zi_studentu "INTERFACE VIEW
-  IN LOCAL MODE  "in local model will not check the authorization (optional)
-  ENTITY _students  "alias name in the Interface BDEF
-  UPDATE FIELDS ( Status )   "Updating the status field
-  WITH VALUE #( FOR key in keys ( %tky = key-%tky  Status = 'Passed' ) )
-  FAILED failed
-  REPORTED reported. "All error messages in reported
+    MODIFY ENTITIES OF zi_studentu "INTERFACE VIEW
+    IN LOCAL MODE  "in local model will not check the authorization (optional)
+    ENTITY _students  "alias name in the Interface BDEF
+    UPDATE FIELDS ( Status )   "Updating the status field
+    WITH VALUE #( FOR key IN keys ( %tky = key-%tky  Status = 'Passed' ) )
+    FAILED failed
+    REPORTED reported. "All error messages in reported
 
-  "Read the data after update and pass the data to UI
-  READ ENTITIES OF zi_studentu
-  IN LOCAL MODE "in local model will not check the authorization (optional)
-  ENTITY _students
-  ALL FIELDS WITH CORRESPONDING #( keys )
-  RESULT DATA(tempStudentsData).
+    "Read the data after update and pass the data to UI
+    READ ENTITIES OF zi_studentu
+    IN LOCAL MODE "in local model will not check the authorization (optional)
+    ENTITY _students
+    ALL FIELDS WITH CORRESPONDING #( keys )
+    RESULT DATA(tempStudentsData).
 
-  result = VALUE #( FOR student IN tempstudentsdata ( %tky = student-%tky  %param = student ) ).
+    result = VALUE #( FOR student IN tempstudentsdata ( %tky = student-%tky  %param = student ) ).
 
 
 
