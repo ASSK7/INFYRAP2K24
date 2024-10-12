@@ -34,5 +34,9 @@ annotate entity ZC_STUDENTU with
   @EndUserText.label: 'School'
   @UI : { selectionField: [{ position: 60 }], lineItem: [{ position: 60 }], identification: [{ position: 60 }]}
   Schoolname;
+  @EndUserText.label: 'Status'
+  @UI : { selectionField: [{ position: 70 }], lineItem: [{ position: 70 }, { type: #FOR_ACTION , dataAction: 'setAdmitted', label : 'Set Admitted' }], 
+  identification: [{ position: 70 },{ type: #FOR_ACTION , dataAction: 'setAdmitted', label : 'Set Admitted' }] }
+  Status;
 
 }

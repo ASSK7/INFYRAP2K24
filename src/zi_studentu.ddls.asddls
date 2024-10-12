@@ -15,5 +15,6 @@ define root view entity ZI_STUDENTU as select from zstudents_u
     studentclass as Studentclass,
     studentage as Studentage,
     studentsection as Studentsection,
-    schoolname as Schoolname
+    schoolname as Schoolname,
+    status as Status
 }

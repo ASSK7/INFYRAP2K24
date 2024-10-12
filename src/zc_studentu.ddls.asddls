@@ -9,5 +9,6 @@ define root view entity ZC_STUDENTU as projection on ZI_STUDENTU
     Studentclass,
     Studentage,
     Studentsection,
-    Schoolname
+    Schoolname,
+    Status
 }
