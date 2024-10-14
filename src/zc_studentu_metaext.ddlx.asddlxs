@@ -38,5 +38,14 @@ annotate entity ZC_STUDENTU with
   @UI : { selectionField: [{ position: 70 }], lineItem: [{ position: 70 }, { type: #FOR_ACTION , dataAction: 'setAdmitted', label : 'Set Admitted' }], 
   identification: [{ position: 70 },{ type: #FOR_ACTION , dataAction: 'setAdmitted', label : 'Set Admitted' }] }
   Status;
+  @EndUserText.label: 'Gender'
+  @UI : { selectionField: [{ position: 80 }], lineItem: [{ position: 80 }], identification: [{ position: 80 }] }
+  @Consumption.valueHelpDefinition: [{ additionalBinding: [{ element: 'Description' , localElement: 'GenderDesc', usage: #FILTER_AND_RESULT}], 
+  entity : { name: 'ZI_GENDER_U', element: 'Value' }, 
+  distinctValues: true }]
+  Gender;
+  @EndUserText.label: 'Gender Description'
+  @UI : { selectionField: [{ position: 90 }], lineItem: [{ position: 90 }], identification: [{ position: 90 }] }
+  GenderDesc;
 
 }

@@ -3,13 +3,10 @@
 {
 "FROM":
 [
-"ZI_GENDER_U",
-"ZSTUDENTS_U"
+"DDCDS_CUSTOMER_DOMAIN_VALUE_T"
 ],
 "ASSOCIATED":
-[
-"ZI_GENDER_U"
-],
+[],
 "BASE":
 [],
 "ANNO_REF":

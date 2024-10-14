@@ -17,7 +17,7 @@ authorization master ( instance )
   //after adding action here, we need to use  action in projection view also using syntax -  use action <actionName>
   action ( features : instance ) setAdmitted result[1] $self;  //features : instance makes business object enable/disable after action happened
 
-  mapping for zstudents_u {
+  mapping for zstudents_u {  //zstudents_u is database table name
     Schoolname = schoolname;
     Studentage = studentage;
     Studentclass = studentclass;
@@ -25,5 +25,7 @@ authorization master ( instance )
     Studentname = studentname;
     Studentsection = studentsection;
     Status = status;
+    Gender = gender;
+    GenderDesc = genderdesc;
   }
 }

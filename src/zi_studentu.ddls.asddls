@@ -9,6 +9,7 @@
     dataClass: #MIXED
 }
 define root view entity ZI_STUDENTU as select from zstudents_u
+association to ZI_GENDER_U as _gender on _gender.Value = $projection.Gender
 {
     key studentid as Studentid,
     studentname as Studentname,
@@ -16,5 +17,10 @@ define root view entity ZI_STUDENTU as select from zstudents_u
     studentage as Studentage,
     studentsection as Studentsection,
     schoolname as Schoolname,
-    status as Status
+    status as Status,
+    gender as Gender,
+    
+//    Associations
+    _gender,
+    _gender.Description as GenderDesc
 }
