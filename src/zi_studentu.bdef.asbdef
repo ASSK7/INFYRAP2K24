@@ -19,6 +19,8 @@ authorization master ( instance )
   //after adding action here, we need to use  action in projection view also using syntax -  use action <actionName>
   action ( features : instance ) setAdmitted result[1] $self;  //features : instance makes business object enable/disable after action happened
 
+  validation validateAge on save { field Studentage; create; update;}  //for validation of inputs
+
   mapping for zstudents_u {  //zstudents_u is database table name
     Schoolname = schoolname;
     Studentage = studentage;
@@ -32,7 +34,7 @@ authorization master ( instance )
   }
 }
 
-//create operation for course table in object page
+//create operation for course table(association to Root view) in object page
 define behavior for ZI_COURSE_U alias Course
 persistent table ZTAB_COURSE_U
 lock dependent by _student

@@ -8,6 +8,8 @@ CLASS lhc__students DEFINITION INHERITING FROM cl_abap_behavior_handler.
 
     METHODS setadmitted FOR MODIFY
       IMPORTING keys FOR ACTION _students~setadmitted RESULT result.
+    METHODS validateage FOR VALIDATE ON SAVE
+      IMPORTING keys FOR _students~validateage.
 
 ENDCLASS.
 
@@ -60,6 +62,29 @@ CLASS lhc__students IMPLEMENTATION.
 
 
 
+
+  ENDMETHOD.
+
+  METHOD validateAge.
+
+    READ ENTITIES OF zi_studentu
+    ENTITY _students  "Entity alias name in BDEF
+    FIELDS ( Studentage )
+    WITH CORRESPONDING #( keys )
+    RESULT DATA(resultData).
+
+    LOOP AT resultdata INTO DATA(result_wa).
+      IF result_wa-Studentage < 21.
+        APPEND VALUE #( %tky = result_wa-%tky ) TO failed-_students.  "This statement will collect the errors
+
+        "this statement will show error in the UI
+        APPEND VALUE #( %tky = result_wa-%tky
+                        %msg = new_message_with_text(
+                        severity = if_abap_behv_message=>severity-error
+                        text = 'Age should not be less than 21'
+                         ) ) TO reported-_students.
+      ENDIF.
+    ENDLOOP.
 
   ENDMETHOD.
 
