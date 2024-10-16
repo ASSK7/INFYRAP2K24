@@ -20,6 +20,7 @@ composition[0..*] of ZI_COURSE_U as _course
     schoolname as Schoolname,
     status as Status,
     gender as Gender,
+    lastchangedat as Lastchangedat,
     
 //    Associations
     _gender,

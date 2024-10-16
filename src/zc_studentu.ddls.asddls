@@ -13,6 +13,7 @@ define root view entity ZC_STUDENTU as projection on ZI_STUDENTU
     Status,
     Gender,
     GenderDesc,
+    Lastchangedat,
 //    Associations
     _course,
     _gender

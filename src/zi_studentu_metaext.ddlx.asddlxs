@@ -56,6 +56,10 @@ annotate entity ZI_STUDENTU
   @EndUserText.label: 'Gender Description'
   @UI : { selectionField: [{ position: 90 }], lineItem: [{ position: 90 }], identification: [{ position: 90 }] }
   GenderDesc;
+  @EndUserText.label: 'Last Changed At'
+  @UI.hidden: true
+  Lastchangedat;
+  
     
     
 }

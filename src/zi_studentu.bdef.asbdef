@@ -1,11 +1,15 @@
 managed implementation in class zbp_i_studentu unique;
-strict ( 2 );
+//strict ( 2 );
+
+with draft;
 
 define behavior for ZI_STUDENTU alias _students
 persistent table zstudents_u
-lock master
+draft table zstudentsu_draft
+//etag master CreatedAt
+lock master total etag Lastchangedat
 authorization master ( instance )
-//etag master <field_name>
+etag master Lastchangedat
 {
   create;
   update;
@@ -31,12 +35,14 @@ authorization master ( instance )
     Status = status;
     Gender = gender;
     GenderDesc = genderdesc;
+    Lastchangedat = lastchangedat;
   }
 }
 
 //create operation for course table(association to Root view) in object page
 define behavior for ZI_COURSE_U alias Course
 persistent table ZTAB_COURSE_U
+draft table ZTABCOURSE_draft
 lock dependent by _student
 authorization dependent by _student
 //authorization
