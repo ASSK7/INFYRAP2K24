@@ -2,4 +2,5 @@
 define service ZC_STUDENTU_SC {
   expose ZC_STUDENTU;
   expose ZI_GENDER_U;
+  expose ZI_COURSE_U;
 }

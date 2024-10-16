@@ -5,10 +5,10 @@
  typeNamePlural: 'Student Details',
  title : {type: #STANDARD, label: 'Student Details', value: 'Studentid'}
 }
-annotate entity ZC_STUDENTU with
+annotate entity ZI_STUDENTU
+    with 
 {
-
-  @UI.facet: [{ 
+     @UI.facet: [{ 
         id: 'flight',
         purpose: #STANDARD,
         type: #IDENTIFICATION_REFERENCE,
@@ -56,5 +56,6 @@ annotate entity ZC_STUDENTU with
   @EndUserText.label: 'Gender Description'
   @UI : { selectionField: [{ position: 90 }], lineItem: [{ position: 90 }], identification: [{ position: 90 }] }
   GenderDesc;
-
+    
+    
 }

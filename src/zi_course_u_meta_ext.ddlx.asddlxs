@@ -1,0 +1,45 @@
+@Metadata.layer: #PARTNER
+
+@UI : {
+
+headerInfo : {
+typeName: 'Course Detail',
+typeNamePlural: 'Course Details',
+
+title : { label: 'Course Details', type: #STANDARD , value: 'Studentid'},
+description : { label: 'Course Details', type: #STANDARD }
+},
+presentationVariant: [{ sortOrder: [{ by: 'Semester' , direction: #ASC }] }]
+}
+
+@Search.searchable: true
+annotate entity ZI_COURSE_U with
+{
+
+  @UI.facet: [{
+     type: #IDENTIFICATION_REFERENCE,
+     id : 'Course',
+     purpose: #STANDARD,
+     label: 'Course Details',
+     position: 10
+
+   }]
+
+  @UI : { lineItem: [{ position: 10 }], identification: [{ position: 10 }] }
+  @EndUserText : { label: 'Student ID' }
+  @Search.defaultSearchElement: true
+  Studentid;
+  @UI : { lineItem: [{ position: 20 }], identification: [{ position: 20 }] }
+  @EndUserText : { label: 'Course' }
+  @Search.defaultSearchElement: true
+  Course;
+  @UI : { lineItem: [{ position: 30 }], identification: [{ position: 30 }] }
+  @EndUserText : { label: 'Semester' }
+  @Search.defaultSearchElement: true
+  Semester;
+  @UI : { lineItem: [{ position: 40 }], identification: [{ position: 40 }] }
+  @EndUserText : { label: 'Semester Result' }
+  @Search.defaultSearchElement: true
+  Semresult;
+
+}

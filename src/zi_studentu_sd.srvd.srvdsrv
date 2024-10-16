@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition'
+define service ZI_STUDENTU_SD {
+  expose ZI_STUDENTU;
+  expose ZI_GENDER_U;
+  expose ZI_COURSE_U;
+}

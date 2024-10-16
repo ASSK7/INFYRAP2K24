@@ -10,6 +10,7 @@
 }
 define root view entity ZI_STUDENTU as select from zstudents_u
 association to ZI_GENDER_U as _gender on _gender.Value = $projection.Gender
+composition[0..*] of ZI_COURSE_U as _course
 {
     key studentid as Studentid,
     studentname as Studentname,
@@ -22,5 +23,8 @@ association to ZI_GENDER_U as _gender on _gender.Value = $projection.Gender
     
 //    Associations
     _gender,
-    _gender.Description as GenderDesc
+    _gender.Description as GenderDesc, 
+    
+ // Compostions
+    _course
 }

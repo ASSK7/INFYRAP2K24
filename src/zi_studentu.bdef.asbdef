@@ -1,5 +1,5 @@
 managed implementation in class zbp_i_studentu unique;
-//strict ( 2 );
+strict ( 2 );
 
 define behavior for ZI_STUDENTU alias _students
 persistent table zstudents_u
@@ -11,6 +11,8 @@ authorization master ( instance )
   update;
   delete;
   field ( readonly ) Studentid;
+
+  association _course {create;}  //Create operation for course table(ZI_COURSE_U) in Object Page, so we need to create behaviour for ZI_COURSE_U cds like below
 
   field (numbering : managed) Studentid; //numbering is for autogenering the ids
 
@@ -28,4 +30,18 @@ authorization master ( instance )
     Gender = gender;
     GenderDesc = genderdesc;
   }
+}
+
+//create operation for course table in object page
+define behavior for ZI_COURSE_U alias Course
+persistent table ZTAB_COURSE_U
+lock dependent by _student
+authorization dependent by _student
+//authorization
+{
+  update;
+  delete;
+  association _student;
+
+  field ( readonly ) Course,Semester,Studentid;
 }

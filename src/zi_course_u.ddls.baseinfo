@@ -3,13 +3,11 @@
 {
 "FROM":
 [
-"ZI_GENDER_U",
-"ZSTUDENTS_U"
+"ZTAB_COURSE_U"
 ],
 "ASSOCIATED":
 [
-"ZI_COURSE_U",
-"ZI_GENDER_U"
+"ZI_STUDENTU"
 ],
 "BASE":
 [],

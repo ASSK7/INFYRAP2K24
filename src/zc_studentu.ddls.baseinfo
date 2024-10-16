@@ -6,9 +6,14 @@
 "ZI_STUDENTU"
 ],
 "ASSOCIATED":
-[],
+[
+"ZI_COURSE_U",
+"ZI_GENDER_U"
+],
 "BASE":
-[],
+[
+"ZI_STUDENTU"
+],
 "ANNO_REF":
 [],
 "SCALAR_FUNCTION":
