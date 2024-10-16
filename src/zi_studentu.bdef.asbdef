@@ -16,7 +16,7 @@ etag master Lastchangedat
   delete;
   field ( readonly ) Studentid;
 
-  association _course {create;}  //Create operation for course table(ZI_COURSE_U) in Object Page, so we need to create behaviour for ZI_COURSE_U cds like below
+  association _course {create; with draft;}  //Create operation for course table(ZI_COURSE_U) in Object Page, so we need to create behaviour for ZI_COURSE_U cds like below
 
   field (numbering : managed) Studentid; //numbering is for autogenering the ids
 
@@ -25,6 +25,9 @@ etag master Lastchangedat
 
   validation validateAge on save { field Studentage; create; update;}  //for validation of inputs
 
+  //determinations
+  determination myCustomDetermination on save { field Studentclass; }  //we can use on Modify also
+  determination myCustomDeterminationForModify on modify { field Studentclass; }
   mapping for zstudents_u {  //zstudents_u is database table name
     Schoolname = schoolname;
     Studentage = studentage;
@@ -49,7 +52,7 @@ authorization dependent by _student
 {
   update;
   delete;
-  association _student;
+  association _student{with draft;}
 
   field ( readonly ) Course,Semester,Studentid;
 }

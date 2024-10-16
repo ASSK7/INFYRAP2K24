@@ -10,6 +10,10 @@ CLASS lhc__students DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR ACTION _students~setadmitted RESULT result.
     METHODS validateage FOR VALIDATE ON SAVE
       IMPORTING keys FOR _students~validateage.
+    METHODS mycustomdetermination FOR DETERMINE ON SAVE
+      IMPORTING keys FOR _students~mycustomdetermination.
+    METHODS mycustomdeterminationformodify FOR DETERMINE ON MODIFY
+      IMPORTING keys FOR _students~mycustomdeterminationformodify.
 
 ENDCLASS.
 
@@ -68,6 +72,7 @@ CLASS lhc__students IMPLEMENTATION.
   METHOD validateAge.
 
     READ ENTITIES OF zi_studentu
+    IN LOCAL MODE
     ENTITY _students  "Entity alias name in BDEF
     FIELDS ( Studentage )
     WITH CORRESPONDING #( keys )
@@ -85,6 +90,46 @@ CLASS lhc__students IMPLEMENTATION.
                          ) ) TO reported-_students.
       ENDIF.
     ENDLOOP.
+
+  ENDMETHOD.
+
+  METHOD myCustomDetermination.
+
+  READ ENTITIES OF zi_studentu
+  IN LOCAL MODE
+  ENTITY _students
+  FIELDS ( Studentclass ) WITH CORRESPONDING #( keys )
+  RESULT DATA(studentData).
+
+  LOOP AT studentdata INTO DATA(ls_data).
+   IF ls_data-Studentclass = 'A'.
+        MODIFY ENTITIES OF zi_studentu
+        IN LOCAL MODE
+        ENTITY _students "Alias name in BDEF
+        UPDATE FIELDS ( Studentsection ) WITH VALUE #( ( %tky = keys[ 1 ]-%tky Studentsection = 7 ) ).
+   ENDIF.
+  ENDLOOP.
+
+  ENDMETHOD.
+
+
+  METHOD myCustomDeterminationForModify.
+
+  READ ENTITIES OF ZI_STUDENTU
+  IN LOCAL MODE
+  ENTITY _students "Alias name in BDEF
+  FIELDS ( Studentclass )
+  WITH CORRESPONDING #( keys )
+  RESULT DATA(resultData).
+
+  LOOP AT resultData INTO DATA(ls_data).
+    IF ls_data-Studentclass = 'B'.
+        MODIFY ENTITIES OF zi_studentu
+        IN LOCAL MODE
+        ENTITY _students "Alias name in BDEF
+        UPDATE FIELDS ( Studentsection ) WITH VALUE #( ( %tky = keys[ 1 ]-%tky Studentsection = 9 ) ).
+    ENDIF.
+  ENDLOOP.
 
   ENDMETHOD.
 

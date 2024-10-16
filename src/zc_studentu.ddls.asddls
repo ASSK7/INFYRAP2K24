@@ -2,7 +2,8 @@
 @EndUserText.label: 'Projection CDS View'
 @Metadata.ignorePropagatedAnnotations: true
 @Metadata.allowExtensions: true
-define root view entity ZC_STUDENTU as projection on ZI_STUDENTU
+define root view entity ZC_STUDENTU
+  provider contract transactional_query as projection on ZI_STUDENTU
 {
     key Studentid,
     Studentname,
